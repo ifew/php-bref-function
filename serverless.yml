@@ -1,0 +1,21 @@
+service: app
+
+provider:
+    name: aws
+    region: ap-southeast-1
+    runtime: provided
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    php-bref-function:
+        handler: index.php
+        description: ''
+        layers:
+            - ${bref:layer.php-73}
+
+# Exclude files from deployment
+package:
+    exclude:
+        - 'tests/**'
